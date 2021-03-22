@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Home</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-danger"
+    >
+      <a class="navbar-brand" href="./home.html">
+        <img
+          src="./MyBank.png"
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt=""
+        />
+        MyBank
+      </a>
+      <a class="navbar-brand" href="#"></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./home.html"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./myAccount.html">My Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./historyTransaction.html"
+              >Transaction History</a
+            >
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="./newTransaction.html"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              New Transaction
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="./friendTransaction.html"
+                >Payment to another account</a
+              >
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="./exchangeTransaction.html"
+                >Exchange</a
+              >
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="./billsTransaction.html"
+                >Pay Bills</a
+              >
+            </div>
+          </li>
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+          <a class="btn btn-outline-danger my-2 my-sm-0" href="./logout.html">
+            log out
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <br />
+      <h1>Welcome to MyBank</h1>
+      <br />
+      <div class="card border-danger mb-3" style="max-width: 66rem">
+        <div class="card text-center">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">RON</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: red">EUR</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: red">USD</a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Hello, John! Your budget for today is:</h5>
+            <p class="card-text">320.14 RON</p>
+            <a href="./newTransaction.html" class="btn btn-danger"
+              >Make a New Transaction</a
+            >
+          </div>
+        </div>
+      </div>
+      <br /><br />
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card border-danger mb-3" style="max-width: 18rem">
+            <div class="card-header">My Account</div>
+            <div class="card-body text-danger">
+              <h5 class="card-title">
+                Everything about your account is in here
+              </h5>
+              <p class="card-text">
+                You can see all your personal informations, change your password
+                and change address.
+              </p>
+              <a href="./myAccount.html" class="btn btn-danger"
+                >Go to My Account</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card border-danger mb-3" style="max-width: 18rem">
+            <div class="card-header">Transaction History</div>
+            <div class="card-body text-danger">
+              <h5 class="card-title">Where are all your money going?</h5>
+              <p class="card-text">
+                You can see where and how much you're spending.<br />Advice:
+                Spend wiser.
+              </p>
+              <a href="./historyTransaction.html" class="btn btn-danger"
+                >Go to Transaction History</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card border-danger mb-3" style="max-width: 18rem">
+            <div class="card-header">New Transaction</div>
+            <div class="card-body text-danger">
+              <h5 class="card-title">How can I spend my money today?</h5>
+              <p class="card-text">
+                You can pay a bill, send money to a friend or exchange from one
+                currency to another.
+              </p>
+              <a href="./newTransaction.html" class="btn btn-danger"
+                >Make a New Transaction</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
