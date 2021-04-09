@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aNwcazB+OLzF5spcKH9Lg40IAtxXmI5PHHaQl2thF84sa6J8boyR7VBDrHZziv06ZyhKfkfCrMm/ktfCVVnVpw==",
+  "dgSpecHash": "5BR412Amt1MQynjvJan6hvgCDJSpcludUACq2N6lusnzRQ2dc83015NYSa2BVvlsiBs4m3xsdXN+PNlM7RLZpQ==",
   "success": true,
-  "projectFilePath": "/Users/mariaantici/University/Year3/Sem2/Project II/MyBank/MyBank/Back/MyBankVer1/MyBank.csproj",
+  "projectFilePath": "/Users/mariaantici/University/Year3/Sem2/Project II/MyBankGit/MyBank/Back/MyBankVer1/MyBank.csproj",
   "expectedPackageFiles": [
     "/Users/mariaantici/.nuget/packages/microsoft.aspnetcore.cryptography.internal/3.1.13/microsoft.aspnetcore.cryptography.internal.3.1.13.nupkg.sha512",
     "/Users/mariaantici/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/3.1.13/microsoft.aspnetcore.cryptography.keyderivation.3.1.13.nupkg.sha512",

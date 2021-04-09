@@ -8847,11 +8847,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mariaantici/University/Year3/Sem2/Project II/MyBank/MyBank/Back/MyBankVer1/MyBank.csproj",
+      "projectUniqueName": "/Users/mariaantici/University/Year3/Sem2/Project II/MyBankGit/MyBank/Back/MyBankVer1/MyBank.csproj",
       "projectName": "MyBank",
-      "projectPath": "/Users/mariaantici/University/Year3/Sem2/Project II/MyBank/MyBank/Back/MyBankVer1/MyBank.csproj",
+      "projectPath": "/Users/mariaantici/University/Year3/Sem2/Project II/MyBankGit/MyBank/Back/MyBankVer1/MyBank.csproj",
       "packagesPath": "/Users/mariaantici/.nuget/packages/",
-      "outputPath": "/Users/mariaantici/University/Year3/Sem2/Project II/MyBank/MyBank/Back/MyBankVer1/obj/",
+      "outputPath": "/Users/mariaantici/University/Year3/Sem2/Project II/MyBankGit/MyBank/Back/MyBankVer1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/mariaantici/.config/NuGet/NuGet.Config"
