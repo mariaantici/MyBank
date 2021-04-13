@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MyBankVer1.Data.Migrations
+namespace MyBank.Data.Migrations
 {
     public partial class Initial : Migration
     {

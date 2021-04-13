@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MyBankVer1.Data;
+using MyBank.Data;
 
 [assembly: HostingStartup(typeof(MyBankVer1.Areas.Identity.IdentityHostingStartup))]
 namespace MyBankVer1.Areas.Identity

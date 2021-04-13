@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using MyBankVer1.Data;
-using MyBankVer1.Models;
+using MyBank.Data;
+using MyBank.Models;
 using MyBank.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -40,7 +40,7 @@ namespace MyBankVer1.Controllers
             return View("Index", userBalance);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Contact()
         {
             return View();
         }
