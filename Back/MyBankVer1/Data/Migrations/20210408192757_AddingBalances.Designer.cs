@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MyBankVer1.Data;
+using MyBank.Data;
 
-namespace MyBankVer1.Data.Migrations
+namespace MyBank.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20210408192757_AddingBalances")]

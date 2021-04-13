@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MyBankVer1.Models;
+
 
 namespace MyBank.Models
 {
@@ -16,6 +16,8 @@ namespace MyBank.Models
         public int AccountID { get; set; }
 
         public string Currency { get; set; }
+
+        public float Amount { get; set; }
 
         public Balance()
         {

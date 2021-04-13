@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MyBank.Models;
-using MyBankVer1.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyBankVer1.Data
+namespace MyBank.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -15,7 +14,6 @@ namespace MyBankVer1.Data
         {
         }
 
-        //AccountsTable
         public DbSet<Account> Accounts { get; set; }
 
         public DbSet<Transaction> Transactions { get; set; }
