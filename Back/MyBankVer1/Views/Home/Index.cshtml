@@ -1,8 +1,101 @@
-﻿@{
+﻿@model MyBank.ViewModels.UserBalance
+
+@{
+
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<body>
+    <div class="container">
+        <br />
+        <h1>Welcome to MyBank</h1>
+        <br />
+        <div class="card border-danger mb-3" style="max-width: 66rem">
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            @Html.ActionLink("RON", "Index", new { id = "RON" }, new { @class = "nav-link", @style = "color: red", @id = "accountSelector_RON" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("EUR", "Index", new { id = "EUR" }, new { @class = "nav-link", @style = "color: red", @id = "accountSelector_EUR" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("USD", "Index", new { id = "USD" }, new { @class = "nav-link", @style = "color: red", @id = "accountSelector_USD" })
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Hello, @Html.DisplayFor(model => model.Name)! Your budget for today is:</h5>
+                    <p class="card-text">@Html.DisplayFor(model => model.Amount) @Html.DisplayFor(model => model.CurrencyType)</p>
+                    <a href="./newTransaction.html" class="btn btn-danger">Make a New Transaction</a>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card border-danger mb-3" style="max-width: 18rem">
+                    <div class="card-header">My Account</div>
+                    <div class="card-body text-danger">
+                        <h5 class="card-title">
+                            Everything about your account is in here
+                        </h5>
+                        <p class="card-text">
+                            You can see all your personal informations, change your password
+                            and change address.
+                        </p>
+                        <a href="./myAccount.html" class="btn btn-danger">Go to My Account</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card border-danger mb-3" style="max-width: 18rem">
+                    <div class="card-header">Transaction History</div>
+                    <div class="card-body text-danger">
+                        <h5 class="card-title">Where are all your money going?</h5>
+                        <p class="card-text">
+                            You can see where and how much you're spending.<br />Advice:
+                            Spend wiser.
+                        </p>
+                        <a href="./historyTransaction.html" class="btn btn-danger">Go to Transaction History</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card border-danger mb-3" style="max-width: 18rem">
+                    <div class="card-header">New Transaction</div>
+                    <div class="card-body text-danger">
+                        <h5 class="card-title">How can I spend my money today?</h5>
+                        <p class="card-text">
+                            You can pay a bill, send money to a friend or exchange from one
+                            currency to another.
+                        </p>
+                        <a href="./newTransaction.html" class="btn btn-danger">Make a New Transaction</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                @{
+                    <text>
+                        document.getElementById("accountSelector_@Model.CurrencyType").className = "nav-link active";
+                    </text>
+                }
+            });
+
+    </script>
+</body>
