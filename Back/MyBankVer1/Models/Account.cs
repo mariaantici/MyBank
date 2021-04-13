@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MyBank.Models;
 
-namespace MyBankVer1.Models
+namespace MyBank.Models
 {
     public class Account
     {
@@ -16,9 +16,8 @@ namespace MyBankVer1.Models
         [ForeignKey("UserID")]
         public ApplicationUser User { get; set; }
 
-        public Account(int AccountID, String UserID)
+        public Account(String UserID)
         {
-            this.AccountID = AccountID;
             this.UserID = UserID;
         }
 

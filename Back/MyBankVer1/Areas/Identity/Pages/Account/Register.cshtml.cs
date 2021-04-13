@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using MyBank.Data;
+using MyBank.Models;
 
 namespace MyBankVer1.Areas.Identity.Pages.Account
 {
@@ -23,17 +26,20 @@ namespace MyBankVer1.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _db;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _db = db;
         }
 
         [BindProperty]
@@ -76,8 +82,28 @@ namespace MyBankVer1.Areas.Identity.Pages.Account
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
                 if (result.Succeeded)
                 {
+                    MyBank.Models.Account account = new MyBank.Models.Account(user.Id);
+                    _db.Accounts.Add(account);
+                    MyBank.Models.Balance balance1 = new MyBank.Models.Balance();
+                    balance1.Account = account;
+                    balance1.Currency = "EUR";
+                    balance1.Amount = 0;
+                    MyBank.Models.Balance balance2 = new MyBank.Models.Balance();
+                    balance2.Account = account;
+                    balance2.Currency = "RON";
+                    balance2.Amount = 0;
+                    MyBank.Models.Balance balance3 = new MyBank.Models.Balance();
+                    balance3.Account = account;
+                    balance3.Currency = "USD";
+                    balance3.Amount = 0;
+                    _db.Balances.Add(balance1);
+                    _db.Balances.Add(balance2);
+                    _db.Balances.Add(balance3);
+                    await _db.SaveChangesAsync();
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

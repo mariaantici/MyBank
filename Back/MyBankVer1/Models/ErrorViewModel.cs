@@ -1,6 +1,6 @@
 using System;
 
-namespace MyBankVer1.Models
+namespace MyBank.Models
 {
     public class ErrorViewModel
     {

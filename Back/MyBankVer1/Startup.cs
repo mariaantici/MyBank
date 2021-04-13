@@ -7,13 +7,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MyBankVer1.Data;
+using MyBank.Data;
+using MyBank.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyBankVer1
+namespace MyBank
 {
     public class Startup
     {
@@ -32,8 +33,14 @@ namespace MyBankVer1
                     Configuration.GetConnectionString("DefaultConnection")));
             _ = services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddRazorPages().
+                AddRazorRuntimeCompilation();
+            services.AddScoped<IHistoryService, HistoryService>();
+            services.AddScoped<IAccountsService, AccountsService>();
+
+            ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MyBank.Models;
 
-namespace MyBankVer1.Models
+namespace MyBank.Models
 {
     public class Transaction
     {
@@ -15,6 +15,7 @@ namespace MyBankVer1.Models
         public int ReceiverID { get; set; }
 
         [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "MM/dd/yyyy")]
         public DateTime Date { get; set; }
 
         public String Currency { get; set; }
@@ -27,9 +28,8 @@ namespace MyBankVer1.Models
         [ForeignKey("ReceiverID")]
         public Account Receiver { get; set; }
 
-        public Transaction(int TransactionID, int SenderID, int ReceiverID, DateTime Date, String Currency, float Amount)
-        {
-            this.TransactionID = TransactionID;
+        public Transaction(int SenderID, int ReceiverID, DateTime Date, String Currency, float Amount)
+        {            
             this.SenderID = SenderID;
             this.ReceiverID = ReceiverID;
             this.Date = Date;
