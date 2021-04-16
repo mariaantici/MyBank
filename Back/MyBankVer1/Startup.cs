@@ -39,6 +39,7 @@ namespace MyBank
                 AddRazorRuntimeCompilation();
             services.AddScoped<IHistoryService, HistoryService>();
             services.AddScoped<IAccountsService, AccountsService>();
+            services.AddScoped<IHomeController, HomeService>();
 
             ;
         }

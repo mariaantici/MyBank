@@ -13,6 +13,7 @@ namespace MyBank.Services
     {
         private readonly ApplicationDbContext db;
 
+
         public HistoryService(ApplicationDbContext db)
         {
             this.db = db;
