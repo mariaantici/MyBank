@@ -19,7 +19,6 @@ namespace MyBankVer1.Controllers
     {
         private readonly ApplicationDbContext db;
         private readonly IHomeController homeController;
-        private readonly ILogger<HomeController> _logger;
         public HomeController(IHomeController homeController, ApplicationDbContext db)
         {
             this.homeController = homeController;

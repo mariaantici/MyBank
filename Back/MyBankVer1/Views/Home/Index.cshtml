@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Hello, @Html.DisplayFor(model => model.Name)! Your budget for today is:</h5>
                     <p class="card-text">@Html.DisplayFor(model => model.Amount) @Html.DisplayFor(model => model.CurrencyType)</p>
-                    <a href="./newTransaction.html" class="btn btn-danger">Make a New Transaction</a>
+                    <a href=@Url.Action("Index", "Transactions") class="btn btn-danger">Make a New Transaction</a>
                 </div>
             </div>
         </div>
@@ -71,7 +71,7 @@
                             You can pay a bill, send money to a friend or exchange from one
                             currency to another.
                         </p>
-                        <a href="./newTransaction.html" class="btn btn-danger">Make a New Transaction</a>
+                        <a href="@Url.Action("Index", "Transactions")" class="btn btn-danger">Make a New Transaction</a>
                     </div>
                 </div>
             </div>

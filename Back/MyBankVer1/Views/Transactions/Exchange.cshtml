@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewData["Title"] = "Exchange";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <h1>Exchange</h1>
+    <br />
+    <form>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">From what Currency</label>
+            <select class="form-control" id="fromCurrency">
+                <option>RON</option>
+                <option>EUR</option>
+                <option>USD</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="amount">Amount of money</label>
+            <input type="number"
+                   class="form-control"
+                   value="5"
+                   id="amount"
+                   placeholder="Enter amount" />
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">To what Currency</label>
+            <select class="form-control" id="toCurrency">
+                <option>EUR</option>
+                <option>RON</option>
+                <option>USD</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="amount">Amount of money after conversion</label>
+            <input disabled type="number"
+                   value="1"
+                   class="form-control"
+                   id="finalAmount"
+                   />
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+            <label class="form-check-label" for="exampleCheck1">
+                I confirm that I have read, understand and agree to MyBank
+                Policies
+            </label>
+        </div>
+        <a href="./successfulTransaction.html" class="btn btn-danger">Exchange</a>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<script>
+    function GetSelectedValue(currencyType) {
+        var e = document.getElementById(currencyType);
+        var text = e.options[e.selectedIndex].text;
+        return text;
+    }
+
+    function GetExchangeRate(fromCurrency, toCurrency) {
+        switch (true) {
+            case (fromCurrency == "EUR" && toCurrency == "RON"):
+                return 5;
+            case (fromCurrency == "RON" && toCurrency == "EUR"):
+                return 0.2;
+            case (fromCurrency == "EUR" && toCurrency == "USD"):
+                return 1.20;
+            case (fromCurrency == "USD" && toCurrency == "EUR"):
+                return 0.80;
+            case (fromCurrency == "RON" && toCurrency == "USD"):
+                return 0.25;
+            case (fromCurrency == "USD" && toCurrency == "RON"):
+                return 4;
+            case (fromCurrency == "RON" && toCurrency == "RON"):
+                return 1;
+            case (fromCurrency == "USD" && toCurrency == "USD"):
+                return 1;
+            case (fromCurrency == "EUR" && toCurrency == "EUR"):
+                return 1;
+        }
+    }
+
+    document.getElementById('fromCurrency').onchange = function () {
+        var fromCurrency = this.value;
+        var toCurrency = GetSelectedValue("toCurrency");
+        var amount = document.getElementById("amount").value;
+        var exchangeRate = GetExchangeRate(fromCurrency, toCurrency);
+        console.log(exchangeRate);
+        console.log(fromCurrency);
+        document.getElementById("finalAmount").value = exchangeRate * amount;
+    }
+
+    document.getElementById('toCurrency').onchange = function () {
+        var toCurrency = this.value;
+        var fromCurrency = GetSelectedValue("fromCurrency");
+        var amount = document.getElementById("amount").value;
+        var exchangeRate = GetExchangeRate(fromCurrency, toCurrency);
+        console.log(exchangeRate);
+        console.log(toCurrency);
+        document.getElementById("finalAmount").value = exchangeRate * amount;
+    }
+
+
+
+</script>
+
