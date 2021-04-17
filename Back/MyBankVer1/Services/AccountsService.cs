@@ -28,5 +28,15 @@ namespace MyBank.Services
             var user = db.Users.Where(x => x.Id == account.UserID).FirstOrDefault();
             return user.UserName;
         }
+
+        public List<Balance> GetBalancesForAccountId(int accountId)
+        {
+            return db.Balances.Where(x => x.AccountID.Equals(accountId)).ToList();
+        }
+
+        public Balance GetBalanceForAccountIdAndCurrency(int accountId, string currencyType)
+        {
+            return db.Balances.Where(x => x.AccountID.Equals(accountId) && x.Currency.Equals(currencyType)).FirstOrDefault();
+        }
     }
 }

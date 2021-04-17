@@ -21,12 +21,15 @@ namespace MyBank.Services
 
         public List<Transaction> GetTransactions(string userId)
         {
-            //var transaction = new Transaction(1, 1, DateTime.Now, "RON", 100);
-            //db.Transactions.Add(transaction);
-            //db.SaveChanges();
-
             var account = db.Accounts.Where(x => x.UserID == userId).FirstOrDefault();
             return db.Transactions.Where(x => x.ReceiverID.Equals(account.AccountID) || x.SenderID.Equals(account.AccountID)).ToList();
+        }
+
+        public void AddHistoryEntry(int senderId, int receiverId, DateTime date, string currencyType, float amount)
+        {
+            var entry = new Transaction(senderId, receiverId, date, currencyType, amount);
+            db.Transactions.Add(entry);
+            db.SaveChanges();
         }
 
     }
