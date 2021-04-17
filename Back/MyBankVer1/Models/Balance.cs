@@ -7,6 +7,12 @@ namespace MyBank.Models
 {
     public class Balance
     {
+        // constants
+
+        public const string BALANCE_TYPE_EUR = "EUR";
+        public const string BALANCE_TYPE_RON = "RON";
+        public const string BALANCE_TYPE_USD = "USD";
+
         [Key]
         public int BalanceID { get; set; }
 
