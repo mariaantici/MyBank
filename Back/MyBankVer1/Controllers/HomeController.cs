@@ -18,8 +18,8 @@ namespace MyBankVer1.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext db;
-        private readonly IHomeController homeController;
-        public HomeController(IHomeController homeController, ApplicationDbContext db)
+        private readonly IHomeService homeController;
+        public HomeController(IHomeService homeController, ApplicationDbContext db)
         {
             this.homeController = homeController;
             this.db = db;

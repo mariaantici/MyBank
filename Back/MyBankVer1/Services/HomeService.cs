@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyBank.Services
 {
-    public class HomeService : IHomeController
+    public class HomeService : IHomeService
     {
         private readonly ApplicationDbContext db;
         private readonly AccountsService accountsService;

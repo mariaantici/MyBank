@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyBank.Services
 {
-    public interface IHomeController
+    public interface IHomeService
     {
         public UserBalance GetUserBalance(string userId, string currency);
     }
