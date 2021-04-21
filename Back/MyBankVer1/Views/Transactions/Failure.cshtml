@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@model MyBank.ViewModels.FailureModel
+
+<div class="container">
+    <br />
+    <h1>Failed Transaction</h1>
+    <br />
+    
+    <div class="alert alert-danger" role="alert">
+        @if (Model.errorType == "username")
+        {
+            <span>Your transaction has been rejected due to entering a non-existent username, please enter a valid one.</span>
+       }else if (Model.errorType == "balance")
+       {
+        <span>
+            Your transaction has been rejected due to insuficient funds.Add money
+            to your account by making an
+        </span>
+        <a href= "./exchangeTransaction.html" class="alert-link">Exchange Transaction</a>
+        <span>or visit one of our MyBank local offices.</span>
+       }
+        
+    </div>
+</div>
