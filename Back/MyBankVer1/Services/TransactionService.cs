@@ -1,4 +1,5 @@
 ﻿using MyBank.Data;
+using System;
 using System.Linq;
 
 namespace MyBank.Services
@@ -16,9 +17,12 @@ namespace MyBank.Services
         public const string USDtoEUR = "0.80";
 
         private readonly ApplicationDbContext db;
-        public TransactionService(ApplicationDbContext db)
+        private readonly IAccountsService accountsService;
+
+        public TransactionService(ApplicationDbContext db, IAccountsService accountsService)
         {
             this.db = db;
+            this.accountsService = accountsService;
         }
 
         public void AddToAccount(int accountId, string currencyType, float amount)
@@ -41,6 +45,17 @@ namespace MyBank.Services
             return amount;
         }
 
+        // validation for transaction actions
+
+        public bool validUsername(string username)
+        {
+            return accountsService.GetUserByUsername(username) != null ? true : false;                    
+        }
+
+        public bool validBalanceAmount(int accountId, float amount, string currency)
+        {
+            return accountsService.GetBalanceForAccountIdAndCurrency(accountId, currency).Amount >= amount ? true : false;
+        }
 
     }
 }

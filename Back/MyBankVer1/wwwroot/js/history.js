@@ -36,7 +36,7 @@ $.ajax({
                         url: "/history/getusernameforaccountid",
                         type: "get",
                         data: {
-                            accountId: accountId
+                            accountId: entry.receiverID
                         },
                         dataType: "json",
                     }).done(function (username) {
@@ -56,7 +56,7 @@ $.ajax({
                         url: "/history/getusernameforaccountid",
                         type: "get",
                         data: {
-                            accountId: accountId
+                            accountId: entry.senderID
                         },
                         dataType: "json",
                     }).done(function (username) {

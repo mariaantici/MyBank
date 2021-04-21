@@ -20,7 +20,7 @@ namespace MyBank.Controllers
             this.accountsService = accountsService;
             this.historyService = historyService;
         }
-        public IActionResult TransactionHistory()
+        public ActionResult Index()
         {
             return View();
         }

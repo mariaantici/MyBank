@@ -1,14 +1,31 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MyBank.Services;
+using MyBank.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MyBank.Controllers
 {
     public class TransactionsController : Controller
     {
+
+        private readonly ITransactionService transactionService;
+        private readonly IAccountsService accountsService;
+        private readonly IHistoryService historyService;
+
+
+        public TransactionsController(ITransactionService transactionService, IAccountsService accountsService, IHistoryService historyService)
+        {
+            this.transactionService = transactionService;
+            this.accountsService = accountsService;
+            this.historyService = historyService;
+        }
+
         // GET: TransactionsController
         public ActionResult Index()
         {
@@ -23,6 +40,19 @@ namespace MyBank.Controllers
 
         // GET: TransactionsController/Create
         public ActionResult Create()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Failure(string? errorType)
+        {
+            return View(new FailureModel(errorType));
+        }
+
+
+        [Authorize]
+        public ActionResult Success()
         {
             return View();
         }
@@ -82,6 +112,32 @@ namespace MyBank.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Transfer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult PostTransfer(string username, long amount, string type)
+        {
+            if (!transactionService.validUsername(username))
+            {
+                return RedirectToAction("Failure", new { errorType = "username" });
+            }
+            if (!transactionService.validBalanceAmount(accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier)), amount, type))
+            {
+                return RedirectToAction("Failure", new { errorType = "balance" });
+            }
+
+            transactionService.DedudctFromAccount(accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier)), type, amount);
+            transactionService.AddToAccount(accountsService.GetAccountId(accountsService.GetUserIDforUsername(username)), type, amount);
+            historyService.AddHistoryEntry(accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier)),
+                                accountsService.GetAccountId(accountsService.GetUserIDforUsername(username)), DateTime.Now, type, amount);
+
+            return RedirectToAction("Success");
         }
     }
 }
