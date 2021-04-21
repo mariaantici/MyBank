@@ -13,6 +13,7 @@
     @inject SignInManager<IdentityUser> SignInManager
     @inject UserManager<IdentityUser> UserManager
     <header>
+
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom border-danger mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
@@ -34,9 +35,29 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="History" asp-action="TransactionHistory">Transactions</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="History" asp-action="Index" >History</a>
                             </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"
+                                   href="@Url.Action("Index", "Transactions")"
+                                   role="button"
+                                   data-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    New Transaction
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Transactions" asp-action="Transfer">Payment to another account</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Transactions" asp-action="Exchange">Exchange</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item">Pay Bills</a>
+                                </div>
+                            </li>
+                            
                         }
+
                     </ul>
                 </div>
             </div>

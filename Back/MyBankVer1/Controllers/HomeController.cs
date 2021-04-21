@@ -11,16 +11,17 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using MyBank.Services;
 
 namespace MyBankVer1.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext db;
-        private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
+        private readonly IHomeService homeController;
+        public HomeController(IHomeService homeController, ApplicationDbContext db)
         {
-            _logger = logger;
+            this.homeController = homeController;
             this.db = db;
         }
 
@@ -31,13 +32,8 @@ namespace MyBankVer1.Controllers
             var claimsIdentity = (ClaimsIdentity)this.User.Identity;
             var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
             var userId = claim.Value;
-            var userName = User.Identity.Name;
-            var AccountId = db.Accounts.FirstOrDefault(n => n.UserID == userId);
-            MyBank.Models.Balance currencyType = db.Balances.FirstOrDefault(n => n.Currency == currency && n.AccountID == AccountId.AccountID);
 
-            var userBalance = new UserBalance(userName, currencyType.Currency, currencyType.Amount);
-
-            return View("Index", userBalance);
+            return View("Index", homeController.GetUserBalance(userId, currency));
         }
 
         public IActionResult Contact()

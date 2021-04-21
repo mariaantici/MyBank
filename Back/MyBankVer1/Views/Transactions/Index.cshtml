@@ -1,0 +1,47 @@
+﻿<div class="container">
+    <br />
+    <h1>New Transaction</h1>
+    <br />
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card border-danger mb-3" style="max-width: 18rem" height="23rem">
+                <div class="card-header">Payment to another account</div>
+                <div class="card-body text-danger">
+                    <h5 class="card-title">
+                        Do you want to send money to another account?
+                    </h5>
+                    <p class="card-text">
+                        You can send money to another account by only introducing their username. We do not recommend sending money to strangers.
+                    </p>
+                    <a asp-area="" asp-controller="Transactions" asp-action="Transfer" class="btn btn-danger">Send money</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card border-danger mb-3" style="max-width: 18rem" height="23rem">
+                <div class="card-header">Exchange</div>
+                <div class="card-body text-danger">
+                    <h5 class="card-title">Do you want to change your money?</h5>
+                    <p class="card-text">
+                        We cannot give you more money, but you can make your account look bigger by exchanging money from one currency to another.
+                    </p>
+                    <a href=@Url.Action("Exchange", "Transactions") class="btn btn-danger">Make an exchange</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card border-danger mb-3" style="max-width: 18rem" height="23rem">
+                <div class="card-header">Pay Bills</div>
+                <div class="card-body text-danger">
+                    <h5 class="card-title">Do you want to pay your bills easy and fast?</h5>
+                    <p class="card-text">
+                        Now you can!
+                        <br>
+                        Choose which utility to pay, type how much they billed you and pay.
+                    </p>
+                    <a href="./billsTransaction.html" class="btn btn-danger">Pay some bills</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

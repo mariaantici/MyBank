@@ -38,9 +38,9 @@ namespace MyBank
             services.AddRazorPages().
                 AddRazorRuntimeCompilation();
             services.AddScoped<IHistoryService, HistoryService>();
-            services.AddScoped<IAccountsService, AccountsService>();
-
-            ;
+            services.AddScoped<IAccountsService, AccountsService>();   
+            services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<ITransactionService, TransactionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
