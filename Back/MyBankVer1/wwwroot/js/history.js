@@ -31,7 +31,11 @@ $.ajax({
                 if (entry.receiverID == 99999) {
                     text1 = document.createTextNode("SYSTEM");
                     historyCell1.appendChild(text1)
-                } else {
+                } else if (entry.receiverID == 1000) {
+                    text1 = document.createTextNode("Enel");
+                    historyCell1.appendChild(text1)
+                        }
+                    else {
                     $.ajax({
                         url: "/history/getusernameforaccountid",
                         type: "get",
