@@ -119,6 +119,12 @@ namespace MyBank.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult PayBills()
+        {
+            return View();
+        }
+
         [HttpPost]
         [Authorize]
         public ActionResult PostTransfer(string username, long amount, string type)
