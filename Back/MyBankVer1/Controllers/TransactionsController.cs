@@ -38,81 +38,30 @@ namespace MyBank.Controllers
             return View();
         }
 
-        // GET: TransactionsController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
+        [HttpPost]
         [Authorize]
-        public ActionResult Failure(string? errorType)
+        public ActionResult Exchange(long amount, string fromCurrency, string toCurrency)
         {
-            return View(new FailureModel(errorType));
-        }
 
-
-        [Authorize]
-        public ActionResult Success()
-        {
-            return View();
-        }
-
-        // POST: TransactionsController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            if (!transactionService.validBalanceAmount(accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier)), amount, fromCurrency))
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Failure", new { errorType = "balance" });
             }
-            catch
-            {
-                return View();
-            }
+
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+
+            var convertedAmount = transactionService.GetExchangeRate(fromCurrency, toCurrency) * amount;
+
+            transactionService.DedudctFromAccount(accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier)), fromCurrency, amount);
+            transactionService.AddToAccount(accountsService.GetAccountId(userId), toCurrency, convertedAmount);
+            historyService.AddHistoryEntry(accountsService.GetAccountId(userId),
+                                accountsService.GetAccountId(userId), DateTime.Now, $"{fromCurrency}->{toCurrency}", amount);
+
+            return RedirectToAction("Index", "History");
         }
 
-        // GET: TransactionsController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: TransactionsController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: TransactionsController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: TransactionsController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         public ActionResult Transfer()
         {

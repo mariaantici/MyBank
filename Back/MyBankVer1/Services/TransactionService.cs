@@ -57,5 +57,31 @@ namespace MyBank.Services
             return accountsService.GetBalanceForAccountIdAndCurrency(accountId, currency).Amount >= amount ? true : false;
         }
 
+        public float GetExchangeRate(string fromCurrency, string toCurrency)
+        {
+            switch (fromCurrency)
+            {
+                case "EUR" when toCurrency == "RON":
+                    return 5;
+                case "RON" when toCurrency == "EUR":
+                    return 0.2F;
+                case "EUR" when toCurrency == "USD":
+                    return 1.20F;
+                case "USD" when toCurrency == "EUR":
+                    return 0.80F;
+                case "RON" when toCurrency == "USD":
+                    return 0.25F;
+                case "USD" when toCurrency == "RON":
+                    return 4;
+                case "RON" when toCurrency == "RON":
+                    return 1;
+                case "USD" when toCurrency == "USD":
+                    return 1;
+                case "EUR" when toCurrency == "EUR":
+                    return 1;
+            }
+
+            return 1;
+        }
     }
 }

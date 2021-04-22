@@ -7,5 +7,6 @@
         void DedudctFromAccount(int accountId, string currencyType, float amount);
         bool validBalanceAmount(int accountId, float amount, string currency);
         bool validUsername(string username);
+        public float GetExchangeRate(string fromCurrency, string toCurrency);
     }
 }
