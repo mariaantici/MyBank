@@ -15,5 +15,7 @@ namespace MyBank.Services
         IdentityUser GetUserByUsername(string username);
         string GetUserIDforUsername(string username);
         public string GetUserNameForAccountId(int accountId);
+
+        int GetAccountIdForBill(string bill);
     }
 }

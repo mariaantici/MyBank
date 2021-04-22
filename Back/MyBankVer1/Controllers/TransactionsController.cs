@@ -139,5 +139,24 @@ namespace MyBank.Controllers
 
             return RedirectToAction("Success");
         }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult PostBillPay(string bill, long amount, string type)
+        {
+            if (!transactionService.validBalanceAmount(accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier)), amount, type))
+            {
+                return RedirectToAction("Failure", new { errorType = "balance" });
+            }
+
+            transactionService.DedudctFromAccount(accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier)), type, amount);
+            transactionService.AddToAccount(accountsService.GetAccountIdForBill(bill), type, amount);
+            historyService.AddHistoryEntry(accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier)),
+                                accountsService.GetAccountIdForBill(bill), DateTime.Now, type, amount);
+
+            return RedirectToAction("Success");
+        }
+
     }
 }
