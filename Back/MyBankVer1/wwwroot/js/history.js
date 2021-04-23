@@ -25,9 +25,16 @@ $.ajax({
             var text1;
             var text4;
             if (entry.senderID == accountId) {
-                row.classList.add("table-danger")
-                text4 = document.createTextNode("Sent");
-                historyCell4.appendChild(text4)
+                if (entry.receiverID == entry.senderID) {
+                    row.classList.add("table-success");
+                    text4 = document.createTextNode("Exchange");
+                    historyCell4.appendChild(text4)
+                }
+                else {
+                    row.classList.add("table-danger")
+                    text4 = document.createTextNode("Sent");
+                    historyCell4.appendChild(text4)
+                }
                 if (entry.receiverID == 99999) {
                     text1 = document.createTextNode("SYSTEM");
                     historyCell1.appendChild(text1)

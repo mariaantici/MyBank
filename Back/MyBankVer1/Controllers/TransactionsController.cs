@@ -27,12 +27,14 @@ namespace MyBank.Controllers
         }
 
         // GET: TransactionsController
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
         // GET: TransactionsController/Details/5
+        [Authorize]
         public ActionResult Exchange()
         {
             return View();
@@ -113,5 +115,10 @@ namespace MyBank.Controllers
             return RedirectToAction("Success");
         }
 
+        [Authorize]
+        public ActionResult Failure(string errorType)
+        {
+            return View(new FailureModel(errorType));
+        }
     }
 }
