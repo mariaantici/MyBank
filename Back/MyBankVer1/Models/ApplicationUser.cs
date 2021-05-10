@@ -7,6 +7,8 @@ namespace MyBank.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        public byte[] ProfilePicture { get; set; }
+
         public Account Account { get; set; }
 
         public ApplicationUser()

@@ -1,26 +1,52 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+    <li>
+        @if (Url.Action("Photo", "User", new { userName = User.Identity.Name }) != null)
+        {
+    <img class="mt-2" style="max-height:25px" src="@Url.Action("Photo", "User" , new { userName=User.Identity.Name })" />}
+
+    </li>
+<li class="nav-item">
+    <a class="nav-link text-dark btn btn-outline-danger my-2 my-sm-0 mr-2" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+</li>
+                
+                                <li class="nav-item">
+                                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                        <button type="submit" class="nav-link text-dark btn btn-outline-danger my-2 my-sm-0 mr-2">Logout</button>
+                                    </form>
+                                </li> }
+                                            else
+                                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark btn btn-outline-danger my-2 my-sm-0 mr-2" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-dark btn btn-outline-danger my-2 my-sm-0 mr-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                                </li>}
+</ul>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a  class="nav-link text-dark btn btn-outline-danger my-2 my-sm-0 mr-2" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link text-dark btn btn-outline-danger my-2 my-sm-0 mr-2">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark btn btn-outline-danger my-2 my-sm-0 mr-2" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark btn btn-outline-danger my-2 my-sm-0 mr-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
-</ul>
+<script>
+        $(document).ready(function () {
+            var loginPrompt = localStorage.getItem("loginPrompt")
+            if (loginPrompt != 1) {
+                alert("Bine ai revenit!")
+                localStorage.setItem("loginPrompt", 1)
+            };
+        });
+</script> }
+            else
+            {
+<script>
+        $(document).ready(function () {
+            localStorage.setItem("loginPrompt", 0);
+        });
+</script>}

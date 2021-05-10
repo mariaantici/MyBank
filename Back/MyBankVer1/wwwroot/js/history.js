@@ -12,7 +12,7 @@ $.ajax({
         type: "get",
         dataType: "json"
     }).done(function (historyData) {
-        historyData.forEach((entry) => {
+        historyData.slice().reverse().forEach((entry) => {
             var row = historyTable.insertRow(historyTable.rows.length);
             var historyCell0 = row.insertCell(0);
             var historyCell1 = row.insertCell(1);
@@ -41,8 +41,8 @@ $.ajax({
                 } else if (entry.receiverID == 1000) {
                     text1 = document.createTextNode("Enel");
                     historyCell1.appendChild(text1)
-                        }
-                    else {
+                }
+                else {
                     $.ajax({
                         url: "/history/getusernameforaccountid",
                         type: "get",
