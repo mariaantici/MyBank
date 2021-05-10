@@ -24,6 +24,24 @@
         </form>
     </div>
 </div>
+<div class="mt-md-3 row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Profile", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+@Html.AntiForgeryToken()
+                <fieldset>
+                    <div class="editor-label">
+                        <label for="profile">Profile Photo</label>
+                    </div>
+                    <div class="editor-field">
+                        <input name="Profile" id="profile" type="file" />
+                    </div>
+                    <p>
+                        <input class="btn btn-danger mt-2" type="submit" value="Save photo" />
+                    </p>
+                </fieldset>}
+    </div>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
