@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace MyBank.Controllers
 {
+    [Authorize]
     public class TransactionsController : Controller
     {
 
@@ -120,5 +121,12 @@ namespace MyBank.Controllers
         {
             return View(new FailureModel(errorType));
         }
+
+        public ActionResult Success()
+        {
+            return View();
+        }
+
+
     }
 }

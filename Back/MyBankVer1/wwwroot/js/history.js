@@ -41,6 +41,18 @@ $.ajax({
                 } else if (entry.receiverID == 1000) {
                     text1 = document.createTextNode("Enel");
                     historyCell1.appendChild(text1)
+                } else if (entry.receiverID == 1001) {
+                    text1 = document.createTextNode("Cez");
+                    historyCell1.appendChild(text1)
+                } else if (entry.receiverID == 1002) {
+                    text1 = document.createTextNode("Vodafone");
+                    historyCell1.appendChild(text1)
+                } else if (entry.receiverID == 1003) {
+                    text1 = document.createTextNode("Orange");
+                    historyCell1.appendChild(text1)
+                } else if (entry.receiverID == 1004) {
+                    text1 = document.createTextNode("Digi");
+                    historyCell1.appendChild(text1)
                 }
                 else {
                     $.ajax({
