@@ -12,7 +12,7 @@ $.ajax({
         type: "get",
         dataType: "json"
     }).done(function (historyData) {
-        historyData.forEach((entry) => {
+        historyData.slice().reverse().forEach((entry) => {
             var row = historyTable.insertRow(historyTable.rows.length);
             var historyCell0 = row.insertCell(0);
             var historyCell1 = row.insertCell(1);
@@ -25,17 +25,24 @@ $.ajax({
             var text1;
             var text4;
             if (entry.senderID == accountId) {
-                row.classList.add("table-danger")
-                text4 = document.createTextNode("Sent");
-                historyCell4.appendChild(text4)
+                if (entry.receiverID == entry.senderID) {
+                    row.classList.add("table-success");
+                    text4 = document.createTextNode("Exchange");
+                    historyCell4.appendChild(text4)
+                }
+                else {
+                    row.classList.add("table-danger")
+                    text4 = document.createTextNode("Sent");
+                    historyCell4.appendChild(text4)
+                }
                 if (entry.receiverID == 99999) {
                     text1 = document.createTextNode("SYSTEM");
                     historyCell1.appendChild(text1)
                 } else if (entry.receiverID == 1000) {
                     text1 = document.createTextNode("Enel");
                     historyCell1.appendChild(text1)
-                        }
-                    else {
+                }
+                else {
                     $.ajax({
                         url: "/history/getusernameforaccountid",
                         type: "get",
