@@ -48,7 +48,7 @@
                 Policies
             </label>
         </div>
-        <a href="./successfulTransaction.html" class="btn btn-danger">Exchange</a>
+        <button class="btn btn-danger" id="SubmitBtn">Exchange</button>
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -110,6 +110,28 @@
         console.log(toCurrency);
         document.getElementById("finalAmount").value = exchangeRate * amount;
     }
+
+    $('#SubmitBtn').click(function () {
+        var amount = document.getElementById("amount").value;
+        fromCurrency = GetSelectedValue("fromCurrency");
+        toCurrency = GetSelectedValue("toCurrency");
+
+        $.ajax({
+
+            url: '/Transactions/Exchange',
+            data: { 'fromCurrency': fromCurrency, 'toCurrency': toCurrency, 'amount': amount },
+            type: "post",
+            cache: false,
+            success: function (data) {
+                var urlToRedirect= '@Url.Action("TransactionHistory","History")';
+                window.location.href = urlToRedirect;
+            },
+            error: function (err) {
+                console.log(err);
+            }   
+        });
+    });
+
 
 
 

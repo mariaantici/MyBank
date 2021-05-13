@@ -11,5 +11,7 @@ namespace MyBank.Services
         public int GetAccountId(string userId);
         List<Balance> GetBalancesForAccountId(int accountId);
         public string GetUserNameForAccountId(int accountId);
+
+        public Balance GetBalanceForAccountIdAndCurrency(int accountId, string currencyType);
     }
 }

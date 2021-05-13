@@ -23,10 +23,11 @@ namespace MyBank.Models
 
         public string Currency { get; set; }
 
+
+        [Range(1, int.MaxValue, ErrorMessage = "Incorrect amount")]
         public float Amount { get; set; }
 
         public Balance()
-        {
-        }
+        {}
     }
 }
