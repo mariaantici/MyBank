@@ -16,10 +16,10 @@ namespace MyBank.Services
         public const string USDtoRON = "4";
         public const string USDtoEUR = "0.80";
 
-        private readonly ApplicationDbContext db;
+        private readonly IApplicationDbContext db;
         private readonly IAccountsService accountsService;
 
-        public TransactionService(ApplicationDbContext db, IAccountsService accountsService)
+        public TransactionService(IApplicationDbContext db, IAccountsService accountsService)
         {
             this.db = db;
             this.accountsService = accountsService;
