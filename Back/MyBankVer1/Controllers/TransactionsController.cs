@@ -81,19 +81,24 @@ namespace MyBank.Controllers
         [Authorize]
         public ActionResult PostTransfer(string username, long amount, string type)
         {
+
             if (!transactionService.validUsername(username))
             {
                 return RedirectToAction("Failure", new { errorType = "username" });
             }
-            if (!transactionService.validBalanceAmount(accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier)), amount, type))
+
+            var accountId = accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var senderId = accountId;
+            var receiverId = accountsService.GetAccountId(accountsService.GetUserIDforUsername(username));
+
+            if (!transactionService.validBalanceAmount(accountId, amount, type))
             {
                 return RedirectToAction("Failure", new { errorType = "balance" });
             }
 
             transactionService.DedudctFromAccount(accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier)), type, amount);
             transactionService.AddToAccount(accountsService.GetAccountId(accountsService.GetUserIDforUsername(username)), type, amount);
-            historyService.AddHistoryEntry(accountsService.GetAccountId(this.User.FindFirstValue(ClaimTypes.NameIdentifier)),
-                                accountsService.GetAccountId(accountsService.GetUserIDforUsername(username)), DateTime.Now, type, amount);
+            historyService.AddHistoryEntry(senderId, receiverId, DateTime.Now, type, amount);
 
             return RedirectToAction("Success");
         }
