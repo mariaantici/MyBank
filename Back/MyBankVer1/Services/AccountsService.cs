@@ -21,9 +21,9 @@ namespace MyBank.Services
         public const string Digi = "Digi";
         public const int DigiId = 1004;
 
-        private readonly ApplicationDbContext db;
+        private readonly IApplicationDbContext db;
 
-        public AccountsService(ApplicationDbContext db)
+        public AccountsService(IApplicationDbContext db)
         {
             this.db = db;
         }

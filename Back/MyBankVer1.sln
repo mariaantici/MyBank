@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank", "MyBankVer1\MyBank.csproj", "{43D88D24-70DB-4F67-BAD8-24CB67260B0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBank", "MyBankVer1\MyBank.csproj", "{43D88D24-70DB-4F67-BAD8-24CB67260B0E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{0C292F29-36EA-4F71-8228-F0F5B2C35118}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriverTests", "DriverTests\DriverTests.csproj", "{22D79BE1-9C56-4EBD-B469-558E798260AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{43D88D24-70DB-4F67-BAD8-24CB67260B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43D88D24-70DB-4F67-BAD8-24CB67260B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43D88D24-70DB-4F67-BAD8-24CB67260B0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C292F29-36EA-4F71-8228-F0F5B2C35118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C292F29-36EA-4F71-8228-F0F5B2C35118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C292F29-36EA-4F71-8228-F0F5B2C35118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C292F29-36EA-4F71-8228-F0F5B2C35118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22D79BE1-9C56-4EBD-B469-558E798260AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22D79BE1-9C56-4EBD-B469-558E798260AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22D79BE1-9C56-4EBD-B469-558E798260AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22D79BE1-9C56-4EBD-B469-558E798260AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

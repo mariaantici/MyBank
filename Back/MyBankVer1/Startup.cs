@@ -42,6 +42,8 @@ namespace MyBank
             services.AddScoped<IAccountsService, AccountsService>();   
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<ITransactionService, TransactionService>();
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

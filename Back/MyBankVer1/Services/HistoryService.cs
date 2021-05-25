@@ -11,10 +11,10 @@ namespace MyBank.Services
 {
     public class HistoryService : IHistoryService
     {
-        private readonly ApplicationDbContext db;
+        private readonly IApplicationDbContext db;
 
 
-        public HistoryService(ApplicationDbContext db)
+        public HistoryService(IApplicationDbContext db)
         {
             this.db = db;
         }

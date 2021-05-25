@@ -9,9 +9,9 @@ namespace MyBank.Services
 {
     public class HomeService : IHomeService
     {
-        private readonly ApplicationDbContext db;
+        private readonly IApplicationDbContext db;
         private readonly AccountsService accountsService;
-        public HomeService(ApplicationDbContext db)
+        public HomeService(IApplicationDbContext db)
         {
             this.db = db;
             accountsService = new AccountsService(db);
