@@ -2,8 +2,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyBank.AutomatedTests.PageObjects;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System;
 
-namespace MyBank.Automation
+namespace MyBank.AutomatedTests
 {
     [TestClass]
     public class ExchangePageTest
@@ -31,9 +32,17 @@ namespace MyBank.Automation
 
             exchangePage.Submit("1");
 
-            var url = driver.Url;
+            var urlAfterExchange = driver.Url;
 
-            Assert.AreEqual(url, "https://localhost:44372/History");
+            HistoryPage historyPage = new HistoryPage(driver);
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            var list = historyPage.GetLastTransaction();
+
+            Assert.AreEqual(urlAfterExchange, "https://localhost:44372/History");
+            Assert.IsTrue(list[0] == "radu@gmail.com");
+            Assert.IsTrue(list[1] == "1");
+            Assert.IsTrue(list[2] == "RON->EUR");
         }
 
         [TestMethod]
@@ -48,9 +57,20 @@ namespace MyBank.Automation
 
             exchangePage.Submit("999999");
 
-            var url = driver.Url;
+            var urlAfterExchange = driver.Url;
 
-            Assert.AreEqual(url, "https://localhost:44372/Transactions/Failure?errorType=balance");
+            HistoryPage historyPage = new HistoryPage(driver);
+
+            historyPage.GoToPage();
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            var list = historyPage.GetLastTransaction();
+
+
+            Assert.AreEqual(urlAfterExchange, "https://localhost:44372/Transactions/Failure?errorType=balance");
+            //Assert.AreNotEqual(list[0], "radu@gmail.com");
+            //Assert.AreNotEqual(list[1],  "1");
+            //Assert.AreNotEqual(list[2], "RON->EUR");
         }
 
         [TestCleanup]
